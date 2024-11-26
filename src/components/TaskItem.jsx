@@ -29,7 +29,7 @@ const TaskItem = ({
 			}`}
 		>
 			{isEditing ? (
-				<div>
+				<div className="editContainer">
 					<input
 						className="editName"
 						type="text"
@@ -41,8 +41,13 @@ const TaskItem = ({
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 					></textarea>
-					<button onClick={saveTask}>Save</button>
-					<button onClick={() => setIsEditing(false)}>
+					<button className="editSave" onClick={saveTask}>
+						Save
+					</button>
+					<button
+						className="editCancel"
+						onClick={() => setIsEditing(false)}
+					>
 						Cancel
 					</button>
 				</div>
@@ -51,16 +56,27 @@ const TaskItem = ({
 					<h3>{task.name}</h3>
 					<p>{task.description}</p>
 					<button
+						className={`${
+							task.completed
+								? "completeMarker"
+								: "uncompleteMarker"
+						}`}
 						onClick={() => toggleTaskCompletion(task.id)}
 					>
 						{task.completed
 							? "Mark as Incomplete"
 							: "Mark as Complete"}
 					</button>
-					<button onClick={() => setIsEditing(true)}>
+					<button
+						className="editBtn"
+						onClick={() => setIsEditing(true)}
+					>
 						Edit
 					</button>
-					<button onClick={() => deleteTask(task.id)}>
+					<button
+						className="deleteBtn"
+						onClick={() => deleteTask(task.id)}
+					>
 						Delete
 					</button>
 				</div>

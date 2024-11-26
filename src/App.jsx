@@ -4,45 +4,53 @@ import TaskList from "./components/TaskList";
 import "./index.css";
 
 const App = () => {
-	// State for storing tasks
 	const [tasks, setTasks] = useState([]);
 
-	// Load tasks from localStorage when the app initializes
+	// Load tasks from localStorage
 	useEffect(() => {
-		const storedTasks = JSON.parse(
-			localStorage.getItem("tasks")
-		);
-		if (storedTasks) setTasks(storedTasks);
+		const storedTasks = localStorage.getItem("tasks");
+		if (storedTasks) {
+			try {
+				const parsedTasks = JSON.parse(storedTasks);
+				if (Array.isArray(parsedTasks)) {
+					setTasks(parsedTasks);
+				}
+			} catch (error) {
+				console.error(
+					"Error loading tasks from localStorage:",
+					error
+				);
+			}
+		}
 	}, []);
 
-	// Save tasks to localStorage whenever they change
+	// Save tasks to localStorage
 	useEffect(() => {
-		localStorage.setItem("tasks", JSON.stringify(tasks));
+		if (Array.isArray(tasks)) {
+			localStorage.setItem("tasks", JSON.stringify(tasks));
+		}
 	}, [tasks]);
 
-	// Add a new task
-	const addTask = (task) => {
-		setTasks([...tasks, task]);
-	};
+	const addTask = (task) =>
+		setTasks((prevTasks) => [...prevTasks, task]);
 
-	// Update an existing task
 	const updateTask = (updatedTask) => {
-		setTasks(
-			tasks.map((task) =>
+		setTasks((prevTasks) =>
+			prevTasks.map((task) =>
 				task.id === updatedTask.id ? updatedTask : task
 			)
 		);
 	};
 
-	// Delete a task
 	const deleteTask = (id) => {
-		setTasks(tasks.filter((task) => task.id !== id));
+		setTasks((prevTasks) =>
+			prevTasks.filter((task) => task.id !== id)
+		);
 	};
 
-	// Toggle task completion
 	const toggleTaskCompletion = (id) => {
-		setTasks(
-			tasks.map((task) =>
+		setTasks((prevTasks) =>
+			prevTasks.map((task) =>
 				task.id === id
 					? { ...task, completed: !task.completed }
 					: task

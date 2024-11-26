@@ -10,6 +10,6 @@
 
 1. Clone the repository.
 2. Run `npm install` to install dependencies.
-3. Run `npm start` to launch the application.
+3. Run `npm run dev` to launch the application.
 
 Enjoy your To-Do app!
