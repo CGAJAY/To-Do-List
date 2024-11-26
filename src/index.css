@@ -1,127 +1,70 @@
-body {
+.app {
 	font-family: Arial, sans-serif;
-	background: #f4f4f9;
-	margin: 0;
-	padding: 0;
+	text-align: center;
+	padding: 20px;
+}
+
+.add-task {
+	margin-bottom: 20px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 100vh;
 }
 
-.app-container {
-	width: 100%;
-	max-width: 600px;
-	background: #fff;
-	padding: 20px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	border-radius: 8px;
+.add-task input,
+.add-task textarea {
+	margin: 5px;
+	padding: 8px;
+	width: 300px;
 }
 
-h1 {
-	text-align: center;
-	color: #333;
-}
-.task-form {
-	margin-right: 20px;
-}
-
-.task-form input,
-.task-form textarea {
-	width: 100%;
-	margin-bottom: 10px;
+.task {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 10px auto;
 	padding: 10px;
 	border: 1px solid #ccc;
-	border-radius: 4px;
+	border-radius: 5px;
+	width: 350px;
+	text-align: left;
 }
 
-.task-form button {
-	width: 100%;
-	padding: 10px;
-	background: #007bff;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-left: 10px;
-}
-
-.task-list {
-	margin-top: 20px;
-}
-
-.task-item {
-	padding: 10px;
-	border-bottom: 1px solid #ddd;
-}
-
-.task-item.completed h3,
-.task-item.completed p {
+.task.done h3 {
 	text-decoration: line-through;
-	color: rgb(30, 193, 46);
+	color: gray;
 }
 
-button {
-	margin-right: 5px;
-	cursor: pointer;
+.task h3 {
+	margin: 0;
 }
-.editContainer {
+
+.task p {
+	margin: 5px 0;
+}
+
+.filter-buttons button {
+	margin: 5px;
+}
+.btns {
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100px;
-}
-.editName {
+	justify-content: space-around;
 	padding: 10px;
-	margin-right: 10px;
+	width: 100%;
 }
-.editDesc {
-	margin-right: 10px;
-}
-.editContainer button {
-	padding: 12px;
-	border-radius: 4px;
-	color: white;
-	border: none;
-}
-.editSave {
-	background-color: #007bff;
-}
-.editCancel {
-	background-color: red;
-}
-@media (max-width: 767px) {
-	.editContainer {
-		flex-direction: column;
-	}
-	.app-container {
-		width: fit-content;
-	}
-}
-.completeMarker {
-	padding: 10px;
-	background-color: rgb(172, 19, 19);
-	color: white;
-	border: none;
-	border-radius: 4px;
-}
-.uncompleteMarker {
-	padding: 10px;
-	color: white;
-	border: none;
-	background-color: rgb(19, 112, 19);
-	border-radius: 4px;
-}
-.editBtn,
-.deleteBtn {
+.btns button {
 	padding: 10px;
 	border: none;
-	color: white;
 	border-radius: 4px;
+	color: white;
 }
-.editBtn {
-	background-color: #007bff;
+.btns button:first-child {
+	background-color: rgb(50, 210, 50);
 }
-.deleteBtn {
-	background-color: rgb(172, 19, 19);
+.btns button:nth-child(2) {
+	background-color: rgb(50, 117, 210);
+}
+.btns button:last-child {
+	background-color: rgb(210, 50, 50);
 }
